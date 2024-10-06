@@ -5,7 +5,9 @@ ENV TZ=Europe/Helsinki
 
 RUN apt-get update && apt upgrade -y
 
-RUN mamba install -y ipykernel pysal polars jupyterlab seaborn plotly duckdb sqlalchemy 
+COPY requirements.txt .
+
+RUN mamba install -y --file requirements.txt
 
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
